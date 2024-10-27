@@ -31,6 +31,9 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 addopts = "-ra -q"
 
+[tool.coverage.run]
+omit = ["ai_architect_planner/__main__.py"]
+
 [tool.black]
 line-length = 88
 target-version = ["py38"]
