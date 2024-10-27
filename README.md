@@ -14,10 +14,11 @@
 - Real-time documentation updates
 - Intelligent decision making
 
-🎨 **Modern UI/UX**
-- Rich-powered CLI interface
-- Interactive planning sessions
-- Progress visualization
+🎨 **Interactive Console Interface**
+- Rich-powered interactive prompts
+- Guided project setup
+- User-friendly experience
+- Intelligent conversation flow
 
 🏭 **Enterprise Ready**
 - Production-grade setup
@@ -56,16 +57,21 @@ pip install -e ".[dev]"
 
 ## 💻 Usage
 
-Start planning your enterprise application:
+Start the interactive planning session:
 ```bash
-python -m ai_architect_planner.cli --project-name "my-awesome-project"
+python ai_architect_planner/cli.py
 ```
 
-The tool will:
-1. Analyze your requirements
-2. Research optimal technologies
-3. Generate comprehensive architecture documentation
-4. Provide implementation guidelines
+The interactive console will guide you through:
+1. Project name selection
+2. Project type selection (web, mobile, desktop, api, or other)
+3. Project description and requirements gathering
+
+The tool will then:
+- Analyze your requirements
+- Research optimal technologies
+- Generate comprehensive architecture documentation
+- Provide implementation guidelines
 
 ## 🧪 Development
 
