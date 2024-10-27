@@ -1,16 +1,17 @@
 """Interactive console interface for AI Architect Planner."""
 
-from typing import Dict, Optional
-from .interaction import (
+from typing import Optional
+from ai_architect_planner.type_definitions import ProjectDetails
+from ai_architect_planner.interaction import (
     collect_project_details,
     show_success,
     show_error,
     show_interrupt
 )
-from .project import create_project_structure, save_architecture_doc
-from .llm import generate_architecture_doc
+from ai_architect_planner.project import create_project_structure, save_architecture_doc
+from ai_architect_planner.llm import generate_architecture_doc
 
-def process_project_details(details: Dict[str, str]) -> None:
+def process_project_details(details: ProjectDetails) -> None:
     """Process the collected project details and create project structure."""
     # Create project structure
     project_dir = create_project_structure(details["name"])
@@ -22,7 +23,7 @@ def process_project_details(details: Dict[str, str]) -> None:
     # Show success messages
     show_success(str(project_dir), str(doc_path))
 
-def main() -> Optional[Dict[str, str]]:
+def main() -> Optional[ProjectDetails]:
     """Start the interactive AI Architect planning process."""
     try:
         details = collect_project_details()
@@ -34,6 +35,3 @@ def main() -> Optional[Dict[str, str]]:
     except Exception as e:
         show_error(str(e))
         return None
-
-if __name__ == "__main__":  # pragma: no cover
-    main()

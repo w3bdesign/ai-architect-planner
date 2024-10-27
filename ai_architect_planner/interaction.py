@@ -3,50 +3,60 @@
 from rich.console import Console
 from rich.panel import Panel
 from rich.prompt import Prompt
-from typing import Dict
+from .type_definitions import ProjectDetails
+from .config import PROJECT_TYPES
+from .constants import (
+    WELCOME_MESSAGE,
+    PROJECT_NAME_PROMPT,
+    PROJECT_TYPE_PROMPT,
+    PROJECT_DESC_PROMPT,
+    INVALID_TYPE_ERROR,
+    INTERRUPT_MESSAGE,
+    ERROR_MESSAGE,
+    SUCCESS_CREATE,
+    SUCCESS_SAVE,
+)
 
 console = Console()
-VALID_PROJECT_TYPES = ["web", "mobile", "desktop", "api", "other"]
 
-def collect_project_details() -> Dict[str, str]:
+def collect_project_details() -> ProjectDetails:
     """Collect project details through interactive prompts."""
     console.print(
         Panel.fit(
-            "Welcome to AI Architect Planner\n\n"
-            "Let's gather some information about your project.",
+            WELCOME_MESSAGE,
             title="AI Architect Planner",
         )
     )
 
-    project_name = Prompt.ask("What is your project name?")
+    project_name = Prompt.ask(PROJECT_NAME_PROMPT)
     
     while True:
         project_type = Prompt.ask(
-            "What type of project is this?",
-            choices=VALID_PROJECT_TYPES,
+            PROJECT_TYPE_PROMPT,
+            choices=PROJECT_TYPES,
             show_choices=True
         )
-        if project_type in VALID_PROJECT_TYPES:
+        if project_type in PROJECT_TYPES:
             break
-        console.print("Please select a valid project type from the list.")
+        console.print(INVALID_TYPE_ERROR)
     
-    project_description = Prompt.ask("Please describe your project briefly")
+    project_description = Prompt.ask(PROJECT_DESC_PROMPT)
     
-    return {
-        "name": project_name,
-        "type": project_type,
-        "description": project_description
-    }
+    return ProjectDetails(
+        name=project_name,
+        type=project_type,
+        description=project_description
+    )
 
 def show_success(project_dir: str, doc_path: str) -> None:
     """Show success messages."""
-    console.print(f"Project structure created at {project_dir}")
-    console.print(f"Architecture details saved to {doc_path}")
+    console.print(SUCCESS_CREATE.format(project_dir))
+    console.print(SUCCESS_SAVE.format(doc_path))
 
 def show_error(message: str) -> None:
     """Show error message."""
-    console.print(f"\nAn error occurred: {message}")
+    console.print(ERROR_MESSAGE.format(message))
 
 def show_interrupt() -> None:
     """Show interrupt message."""
-    console.print("\nProcess interrupted by user. Goodbye!")
+    console.print(INTERRUPT_MESSAGE)
