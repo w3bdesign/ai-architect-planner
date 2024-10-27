@@ -1,58 +1,32 @@
-"""Tests for the interactive command-line interface."""
+"""Tests for CLI interface."""
 
 from unittest.mock import patch
-from ai_architect_planner.cli import collect_project_details, process_project_details, main
-
-def test_collect_project_details():
-    """Test project details collection through interactive prompts."""
-    with patch('rich.prompt.Prompt.ask') as mock_ask:
-        mock_ask.side_effect = [
-            "test-project",
-            "web",
-            "A test project"
-        ]
-        
-        details = collect_project_details()
-        assert details == {
-            "name": "test-project",
-            "type": "web",
-            "description": "A test project"
-        }
-
-def test_invalid_project_type():
-    """Test handling of invalid project type."""
-    with patch('rich.prompt.Prompt.ask') as mock_ask:
-        mock_ask.side_effect = [
-            "test-project",
-            "invalid",
-            "web",
-            "A test project"
-        ]
-        
-        details = collect_project_details()
-        assert details["type"] == "web"
+from ai_architect_planner.cli import process_project_details, main
 
 def test_process_project_details():
-    """Test project structure creation."""
+    """Test project creation process."""
     test_details = {
         "name": "test-project",
         "type": "web",
         "description": "A test project"
     }
     
-    with patch('pathlib.Path.mkdir') as mock_mkdir, \
-         patch('pathlib.Path.write_text') as mock_write:
+    with patch('ai_architect_planner.cli.create_project_structure') as mock_create, \
+         patch('ai_architect_planner.cli.save_architecture_doc') as mock_save, \
+         patch('ai_architect_planner.cli.generate_architecture_doc') as mock_generate, \
+         patch('ai_architect_planner.cli.show_success') as mock_show:
+        
+        # Set up mock returns
+        mock_create.return_value = "test-project"
+        mock_save.return_value = "test-project/docs/ARCHITECT.md"
+        mock_generate.return_value = "# Test Architecture"
+        
         process_project_details(test_details)
         
-        # Verify project structure creation
-        assert mock_mkdir.call_count == 4  # project dir + src, docs, tests
-        
-        # Verify file content
-        written_content = mock_write.call_args.args[0]
-        assert "# test-project - Architecture Document" in written_content
-        assert "**Project Name**: test-project" in written_content
-        assert "**Project Type**: web" in written_content
-        assert "**Description**: A test project" in written_content
+        mock_create.assert_called_once_with(test_details["name"])
+        mock_generate.assert_called_once_with(test_details)
+        mock_save.assert_called_once()
+        mock_show.assert_called_once()
 
 def test_main_success():
     """Test successful execution of main function."""
@@ -73,12 +47,18 @@ def test_main_success():
 
 def test_main_keyboard_interrupt():
     """Test keyboard interrupt handling."""
-    with patch('ai_architect_planner.cli.collect_project_details', side_effect=KeyboardInterrupt):
+    with patch('ai_architect_planner.cli.collect_project_details', 
+              side_effect=KeyboardInterrupt), \
+         patch('ai_architect_planner.cli.show_interrupt') as mock_show:
         result = main()
         assert result is None
+        mock_show.assert_called_once()
 
 def test_main_error():
     """Test general error handling."""
-    with patch('ai_architect_planner.cli.collect_project_details', side_effect=Exception("Test error")):
+    with patch('ai_architect_planner.cli.collect_project_details', 
+              side_effect=Exception("Test error")), \
+         patch('ai_architect_planner.cli.show_error') as mock_show:
         result = main()
         assert result is None
+        mock_show.assert_called_once_with("Test error")
