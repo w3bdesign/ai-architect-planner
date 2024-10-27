@@ -60,7 +60,6 @@ def collect_project_details():
         "description": project_description
     }
 
-@app.command()
 def main():
     """Start the interactive AI Architect planning process."""
     try:
@@ -73,4 +72,4 @@ def main():
         console.print(f"\n[error]An error occurred: {str(e)}[/error]")
 
 if __name__ == "__main__":
-    app()
+    main()

@@ -52,6 +52,7 @@ source venv/bin/activate
 
 3️⃣ Install dependencies:
 ```bash
+# Install package with development dependencies (required for testing)
 pip install -e ".[dev]"
 ```
 
@@ -73,17 +74,68 @@ The tool will then:
 - Generate comprehensive architecture documentation
 - Provide implementation guidelines
 
-## 🧪 Development
+## 🧪 Testing
 
-We follow Test-Driven Development (TDD) practices:
+We follow Test-Driven Development (TDD) practices and maintain comprehensive test coverage. Our test suite includes:
 
+### Test Categories
+
+🔍 **CLI Tests**
+- Basic CLI functionality and startup
+- Interactive prompt validation
+- Project type validation (web, mobile, desktop, api, other)
+- Error handling and graceful exits
+- Keyboard interrupt handling
+
+### Running Tests
+
+First, ensure you have installed the package with development dependencies:
 ```bash
-# Run tests
-pytest
-
-# Run tests with coverage
-pytest --cov=ai_architect_planner
+pip install -e ".[dev]"
 ```
+
+Then you can run the tests:
+
+Run all tests:
+```bash
+pytest
+```
+
+Run tests with coverage report:
+```bash
+# Generate coverage report
+pytest --cov=ai_architect_planner
+
+# Generate detailed coverage report
+pytest --cov=ai_architect_planner --cov-report=term-missing
+```
+
+Run specific test categories:
+```bash
+# Run only CLI tests
+pytest tests/test_cli.py -v
+
+# Run with detailed output
+pytest -v
+
+# Run tests matching specific pattern
+pytest -k "test_cli" -v
+```
+
+### Test Structure
+
+Tests are organized in the `tests/` directory:
+- `test_cli.py`: Interactive CLI interface tests
+- Additional test files will be added for new features
+
+### Writing Tests
+
+When contributing new features, please ensure:
+1. All new features have corresponding tests
+2. Tests use appropriate mocking for external dependencies
+3. Error cases are properly tested
+4. Tests are properly documented
+5. Coverage is maintained above 90%
 
 ## 📚 Documentation
 
