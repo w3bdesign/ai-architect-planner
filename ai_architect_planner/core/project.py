@@ -1,7 +1,7 @@
 """Project structure and file operations."""
 
 from pathlib import Path
-from .config import DEFAULT_DIRS, get_doc_path
+from ai_architect_planner.utils.config import DEFAULT_DIRS, get_doc_path
 
 def create_project_structure(project_name: str) -> Path:
     """Create the project directory structure."""

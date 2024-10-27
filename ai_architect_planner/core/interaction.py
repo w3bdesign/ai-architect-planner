@@ -3,9 +3,9 @@
 from rich.console import Console
 from rich.panel import Panel
 from rich.prompt import Prompt
-from .type_definitions import ProjectDetails
-from .config import PROJECT_TYPES
-from .constants import (
+from ai_architect_planner.utils.type_definitions import ProjectDetails
+from ai_architect_planner.utils.config import PROJECT_TYPES
+from ai_architect_planner.utils.constants import (
     WELCOME_MESSAGE,
     PROJECT_NAME_PROMPT,
     PROJECT_TYPE_PROMPT,

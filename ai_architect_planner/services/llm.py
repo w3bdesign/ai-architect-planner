@@ -1,6 +1,6 @@
 """Mock LLM service with hardcoded responses."""
 
-from ai_architect_planner.type_definitions import ProjectDetails, ArchitectureAnalysis, TechnologyStack
+from ai_architect_planner.utils.type_definitions import ProjectDetails, ArchitectureAnalysis, TechnologyStack
 
 def analyze_project_requirements(details: ProjectDetails) -> ArchitectureAnalysis:
     """Mock analysis of project requirements."""

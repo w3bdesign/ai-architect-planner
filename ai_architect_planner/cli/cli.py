@@ -1,15 +1,15 @@
 """Interactive console interface for AI Architect Planner."""
 
 from typing import Optional
-from ai_architect_planner.type_definitions import ProjectDetails
-from ai_architect_planner.interaction import (
+from ai_architect_planner.utils.type_definitions import ProjectDetails
+from ai_architect_planner.core.interaction import (
     collect_project_details,
     show_success,
     show_error,
     show_interrupt
 )
-from ai_architect_planner.project import create_project_structure, save_architecture_doc
-from ai_architect_planner.llm import generate_architecture_doc
+from ai_architect_planner.core.project import create_project_structure, save_architecture_doc
+from ai_architect_planner.services.llm import generate_architecture_doc
 
 def process_project_details(details: ProjectDetails) -> None:
     """Process the collected project details and create project structure."""
