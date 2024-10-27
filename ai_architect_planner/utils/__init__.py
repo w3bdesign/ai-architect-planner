@@ -1,4 +1,4 @@
-"""Utility modules for AI Architect Planner."""
+"""Utilities for AI Architect Planner."""
 
 from .config import PROJECT_TYPES, DEFAULT_DIRS, get_doc_path
 from .constants import (

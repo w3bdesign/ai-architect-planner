@@ -1,9 +1,7 @@
 """Constants for AI Architect Planner."""
 
 # CLI Messages
-WELCOME_MESSAGE = """Welcome to AI Architect Planner
-
-Let's gather some information about your project."""
+WELCOME_MESSAGE = "Welcome to AI Architect Planner\n\nLet's gather some information about your project."
 
 # Prompts
 PROJECT_NAME_PROMPT = "What is your project name?"

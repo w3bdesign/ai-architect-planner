@@ -1,4 +1,4 @@
-"""CLI interface for AI Architect Planner."""
+"""CLI module for AI Architect Planner."""
 
 from .cli import main, process_project_details
 

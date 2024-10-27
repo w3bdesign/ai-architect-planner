@@ -1,61 +1,65 @@
 """Mock LLM service with hardcoded responses."""
 
-from ai_architect_planner.utils.type_definitions import ProjectDetails, ArchitectureAnalysis, TechnologyStack
+from ai_architect_planner.utils.type_definitions import (
+    ProjectDetails,
+    ArchitectureAnalysis,
+    TechnologyStack
+)
 
 def analyze_project_requirements(details: ProjectDetails) -> ArchitectureAnalysis:
     """Mock analysis of project requirements."""
     # Hardcoded response based on project type
     responses = {
-        "web": ArchitectureAnalysis(
-            architecture=[
+        "web": {
+            "architecture": [
                 "Microservices architecture",
                 "RESTful API design",
                 "Single Page Application (SPA)"
             ],
-            components=[
+            "components": [
                 "Frontend client",
                 "API Gateway",
                 "Authentication service",
                 "Database layer"
             ],
-            security=[
+            "security": [
                 "JWT authentication",
                 "HTTPS encryption",
                 "Input validation",
                 "Rate limiting"
             ],
-            scalability=[
+            "scalability": [
                 "Horizontal scaling",
                 "Caching layer",
                 "Load balancing",
                 "Database sharding"
             ]
-        ),
-        "mobile": ArchitectureAnalysis(
-            architecture=[
+        },
+        "mobile": {
+            "architecture": [
                 "Client-server architecture",
                 "Native app design",
                 "Offline-first approach"
             ],
-            components=[
+            "components": [
                 "Mobile client",
                 "Backend API",
                 "Push notification service",
                 "Data sync service"
             ],
-            security=[
+            "security": [
                 "Biometric authentication",
                 "End-to-end encryption",
                 "Secure storage",
                 "Certificate pinning"
             ],
-            scalability=[
+            "scalability": [
                 "CDN integration",
                 "Backend scaling",
                 "Efficient data sync",
                 "Background processing"
             ]
-        )
+        }
     }
     
     # Default to web if project type not found
@@ -64,46 +68,46 @@ def analyze_project_requirements(details: ProjectDetails) -> ArchitectureAnalysi
 def suggest_technology_stack(project_type: str) -> TechnologyStack:
     """Mock technology stack suggestions."""
     stacks = {
-        "web": TechnologyStack(
-            frontend=[
+        "web": {
+            "frontend": [
                 "React",
                 "TypeScript",
                 "Redux",
                 "Tailwind CSS"
             ],
-            backend=[
+            "backend": [
                 "Node.js",
                 "Express",
                 "PostgreSQL",
                 "Redis"
             ],
-            devops=[
+            "devops": [
                 "Docker",
                 "GitHub Actions",
                 "AWS",
                 "Prometheus"
             ]
-        ),
-        "mobile": TechnologyStack(
-            frontend=[
+        },
+        "mobile": {
+            "frontend": [
                 "React Native",
                 "TypeScript",
                 "Redux",
                 "Native Base"
             ],
-            backend=[
+            "backend": [
                 "Node.js",
                 "Express",
                 "MongoDB",
                 "Redis"
             ],
-            devops=[
+            "devops": [
                 "Fastlane",
                 "GitHub Actions",
                 "AWS",
                 "Firebase"
             ]
-        )
+        }
     }
     
     return stacks.get(project_type, stacks["web"])

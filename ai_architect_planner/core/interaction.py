@@ -42,11 +42,11 @@ def collect_project_details() -> ProjectDetails:
     
     project_description = Prompt.ask(PROJECT_DESC_PROMPT)
     
-    return ProjectDetails(
-        name=project_name,
-        type=project_type,
-        description=project_description
-    )
+    return {
+        "name": project_name,
+        "type": project_type,
+        "description": project_description
+    }
 
 def show_success(project_dir: str, doc_path: str) -> None:
     """Show success messages."""
