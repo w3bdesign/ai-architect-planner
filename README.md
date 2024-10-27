@@ -8,22 +8,19 @@
 - Enterprise-grade application scaffolding
 - Best practices implementation
 - Technology stack optimization
+- Project structure generation
 
-🧠 **Multi-LLM Integration**
-- Leverages multiple AI models
-- Real-time documentation updates
-- Intelligent decision making
+🧠 **AI-Powered Design**
+- Architecture pattern recommendations
+- Technology stack suggestions
+- Security considerations
+- Scalability strategies
 
-🎨 **Interactive Console Interface**
-- Rich-powered interactive prompts
+🎨 **Interactive Experience**
+- User-friendly CLI interface
 - Guided project setup
-- User-friendly experience
-- Intelligent conversation flow
-
-🏭 **Enterprise Ready**
-- Production-grade setup
-- Scalable architecture
-- Security-first approach
+- Detailed documentation generation
+- Clear project organization
 
 ## 🚀 Quick Start
 
@@ -50,9 +47,8 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-3️⃣ Install dependencies:
+3️⃣ Install in development mode:
 ```bash
-# Install package with development dependencies (required for testing)
 pip install -e ".[dev]"
 ```
 
@@ -60,95 +56,118 @@ pip install -e ".[dev]"
 
 Start the interactive planning session:
 ```bash
-python ai_architect_planner/cli.py
+python -m ai_architect_planner
 ```
 
-The interactive console will guide you through:
-1. Project name selection
-2. Project type selection (web, mobile, desktop, api, or other)
-3. Project description and requirements gathering
+The tool will:
+1. Guide you through project setup
+2. Generate project structure
+3. Create detailed architecture documentation
+4. Provide technology recommendations
 
-The tool will then:
-- Analyze your requirements
-- Research optimal technologies
-- Generate comprehensive architecture documentation
-- Provide implementation guidelines
+### Generated Project Structure
+
+For each project, the tool creates:
+```
+your-project/
+├── src/           # Source code
+├── docs/          # Documentation
+│   └── ARCHITECT.md  # Architecture document
+└── tests/         # Test files
+```
+
+## 🏛️ Project Structure
+
+```
+ai_architect_planner/
+├── core/          # Core functionality
+│   ├── interaction.py  # User interaction
+│   └── project.py      # Project operations
+├── services/      # Service modules
+│   └── llm.py         # AI service (mock)
+├── utils/         # Utilities
+│   ├── config.py          # Configuration
+│   ├── constants.py       # Constants
+│   └── type_definitions.py # Type hints
+└── cli/           # CLI interface
+    └── cli.py          # Main CLI
+```
+
+### Module Overview
+
+#### Core
+- **interaction.py**: User interaction handling
+- **project.py**: Project structure operations
+
+#### Services
+- **llm.py**: AI service for architecture analysis (currently mocked)
+
+#### Utils
+- **config.py**: Project-wide configuration
+- **constants.py**: Shared constants
+- **type_definitions.py**: TypeScript-like type hints
+
+#### CLI
+- **cli.py**: Main CLI interface
 
 ## 🧪 Testing
 
-We follow Test-Driven Development (TDD) practices and maintain comprehensive test coverage. Our test suite includes:
-
-### Test Categories
-
-🔍 **CLI Tests**
-- Basic CLI functionality and startup
-- Interactive prompt validation
-- Project type validation (web, mobile, desktop, api, other)
-- Error handling and graceful exits
-- Keyboard interrupt handling
-
-### Running Tests
-
-First, ensure you have installed the package with development dependencies:
+Run tests with coverage:
 ```bash
-pip install -e ".[dev]"
-```
-
-Then you can run the tests:
-
-Run all tests:
-```bash
+# Run all tests
 pytest
-```
 
-Run tests with coverage report:
-```bash
-# Generate coverage report
+# Run with coverage report
 pytest --cov=ai_architect_planner
 
-# Generate detailed coverage report
-pytest --cov=ai_architect_planner --cov-report=term-missing
-```
-
-Run specific test categories:
-```bash
-# Run only CLI tests
-pytest tests/test_cli.py -v
-
-# Run with detailed output
-pytest -v
-
-# Run tests matching specific pattern
-pytest -k "test_cli" -v
+# Run specific test file
+pytest tests/cli/test_cli.py -v
 ```
 
 ### Test Structure
 
-Tests are organized in the `tests/` directory:
-- `test_cli.py`: Interactive CLI interface tests
-- Additional test files will be added for new features
+```
+tests/
+├── cli/          # CLI tests
+├── core/         # Core module tests
+├── services/     # Service tests
+└── utils/        # Utility tests
+```
 
-### Writing Tests
+## 📚 Generated Documentation
 
-When contributing new features, please ensure:
-1. All new features have corresponding tests
-2. Tests use appropriate mocking for external dependencies
-3. Error cases are properly tested
-4. Tests are properly documented
-5. Coverage is maintained above 90%
-
-## 📚 Documentation
-
-The tool generates a comprehensive `ARCHITECT.md` file containing:
+The tool generates a comprehensive `ARCHITECT.md` in your project containing:
 - 📐 System Architecture
 - 🔧 Technology Stack
 - 🛠️ Implementation Guidelines
 - 🔒 Security Considerations
 - 📈 Scaling Strategies
 
+## 🔄 Development Workflow
+
+1. Create feature branch
+2. Make changes
+3. Run tests and linting:
+   ```bash
+   # Run tests with coverage
+   pytest --cov=ai_architect_planner
+   
+   # Run black for formatting
+   black .
+   
+   # Run isort for import sorting
+   isort .
+   ```
+4. Submit pull request
+
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions welcome! Please:
+1. Fork the repository
+2. Create a feature branch
+3. Add tests for new functionality
+4. Ensure all tests pass
+5. Submit a pull request
 
 ## 📄 License
 

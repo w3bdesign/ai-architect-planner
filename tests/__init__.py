@@ -1,1 +1,1 @@
-"""Test suite for AI Architect Planner."""
+"""Tests for AI Architect Planner."""

@@ -1,4 +1,4 @@
-# 🐍 Python
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
@@ -20,42 +20,24 @@ wheels/
 .installed.cfg
 *.egg
 
-# 🌳 Virtual Environment
+# Virtual Environment
 venv/
 ENV/
 env/
-.env
 
-# 💻 IDE
+# IDE
 .idea/
 .vscode/
 *.swp
 *.swo
-.history/
-*.sublime-workspace
-*.sublime-project
 
-# 🧪 Testing
+# Testing
 .coverage
 htmlcov/
 .pytest_cache/
-.tox/
-.nox/
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
 
-# 📝 Documentation
-ARCHITECT.md
-docs/_build/
-
-# 📦 Distribution
-*.tar.gz
-*.whl
-
-# 🗄️ Project specific
-output/
-logs/
-.cache/
-tmp/
+# Generated Projects
+*-project/
+test/
+test-*/
+jalla/

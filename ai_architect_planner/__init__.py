@@ -1,3 +1,5 @@
-"""AI Architect Planner - Enterprise Application Architecture Assistant."""
+"""AI Architect Planner package."""
 
-__version__ = "0.1.0"
+from ai_architect_planner.cli import main
+
+__all__ = ['main']

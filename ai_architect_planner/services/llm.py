@@ -1,8 +1,12 @@
 """Mock LLM service with hardcoded responses."""
 
-from typing import Dict, List
+from ai_architect_planner.utils.type_definitions import (
+    ProjectDetails,
+    ArchitectureAnalysis,
+    TechnologyStack
+)
 
-def analyze_project_requirements(details: Dict[str, str]) -> Dict[str, List[str]]:
+def analyze_project_requirements(details: ProjectDetails) -> ArchitectureAnalysis:
     """Mock analysis of project requirements."""
     # Hardcoded response based on project type
     responses = {
@@ -61,7 +65,7 @@ def analyze_project_requirements(details: Dict[str, str]) -> Dict[str, List[str]
     # Default to web if project type not found
     return responses.get(details["type"], responses["web"])
 
-def suggest_technology_stack(project_type: str) -> Dict[str, List[str]]:
+def suggest_technology_stack(project_type: str) -> TechnologyStack:
     """Mock technology stack suggestions."""
     stacks = {
         "web": {
@@ -108,7 +112,7 @@ def suggest_technology_stack(project_type: str) -> Dict[str, List[str]]:
     
     return stacks.get(project_type, stacks["web"])
 
-def generate_architecture_doc(details: Dict[str, str]) -> str:
+def generate_architecture_doc(details: ProjectDetails) -> str:
     """Generate architecture document with hardcoded sections."""
     requirements = analyze_project_requirements(details)
     tech_stack = suggest_technology_stack(details["type"])
@@ -124,28 +128,26 @@ def generate_architecture_doc(details: Dict[str, str]) -> str:
 ## Architecture Design
 
 ### System Architecture
-- **Pattern**: {requirements['architecture'][0]}
-- **Design**: {requirements['architecture'][1]}
-- **Approach**: {requirements['architecture'][2]}
+{chr(10).join(f"- {item}" for item in requirements['architecture'])}
 
 ### Components
-{chr(10).join(f"- {component}" for component in requirements['components'])}
+{chr(10).join(f"- {item}" for item in requirements['components'])}
 
 ### Technology Stack
 #### Frontend
-{chr(10).join(f"- {tech}" for tech in tech_stack['frontend'])}
+{chr(10).join(f"- {item}" for item in tech_stack['frontend'])}
 
 #### Backend
-{chr(10).join(f"- {tech}" for tech in tech_stack['backend'])}
+{chr(10).join(f"- {item}" for item in tech_stack['backend'])}
 
 #### DevOps
-{chr(10).join(f"- {tech}" for tech in tech_stack['devops'])}
+{chr(10).join(f"- {item}" for item in tech_stack['devops'])}
 
 ### Security Architecture
-{chr(10).join(f"- {security}" for security in requirements['security'])}
+{chr(10).join(f"- {item}" for item in requirements['security'])}
 
 ### Scalability Strategy
-{chr(10).join(f"- {scale}" for scale in requirements['scalability'])}
+{chr(10).join(f"- {item}" for item in requirements['scalability'])}
 
 ## Project Structure
 ```
