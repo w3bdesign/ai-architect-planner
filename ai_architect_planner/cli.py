@@ -5,7 +5,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.prompt import Prompt
 from rich.theme import Theme
-from typing import Literal
+from typing import Literal, Optional, Dict
 
 custom_theme = Theme({
     "info": "cyan",
@@ -21,7 +21,7 @@ VALID_PROJECT_TYPES = ["web", "mobile", "desktop", "api", "other"]
 console = Console(theme=custom_theme)
 app = typer.Typer(help="AI Architect Planner - Your Enterprise Architecture Assistant")
 
-def collect_project_details():
+def collect_project_details() -> Dict[str, str]:
     """Collect project details through interactive prompts."""
     console.print(
         Panel.fit(
@@ -60,16 +60,28 @@ def collect_project_details():
         "description": project_description
     }
 
-def main():
+def process_project_details(details: Dict[str, str]) -> None:
+    """Process the collected project details."""
+    # Future: Add more interactive steps here
+    pass
+
+def main() -> Optional[Dict[str, str]]:
     """Start the interactive AI Architect planning process."""
     try:
         project_details = collect_project_details()
-        # Future: Add more interactive steps here
+        process_project_details(project_details)
+        return project_details
         
     except KeyboardInterrupt:
         console.print("\n[warning]Process interrupted by user. Goodbye![/warning]")
+        return None
     except Exception as e:
         console.print(f"\n[error]An error occurred: {str(e)}[/error]")
+        return None
 
-if __name__ == "__main__":
+def run_cli() -> None:
+    """Entry point for the CLI application."""
     main()
+
+if __name__ == "__main__":  # pragma: no cover
+    run_cli()
