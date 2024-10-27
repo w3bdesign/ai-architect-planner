@@ -5,6 +5,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.prompt import Prompt
 from rich.theme import Theme
+from typing import Literal
 
 custom_theme = Theme({
     "info": "cyan",
@@ -13,6 +14,9 @@ custom_theme = Theme({
     "success": "green",
     "prompt": "yellow",
 })
+
+ProjectType = Literal["web", "mobile", "desktop", "api", "other"]
+VALID_PROJECT_TYPES = ["web", "mobile", "desktop", "api", "other"]
 
 console = Console(theme=custom_theme)
 app = typer.Typer(help="AI Architect Planner - Your Enterprise Architecture Assistant")
@@ -30,10 +34,18 @@ def collect_project_details():
 
     # Collect basic project information
     project_name = Prompt.ask("[prompt]What is your project name?[/prompt]")
-    project_type = Prompt.ask(
-        "[prompt]What type of project is this?[/prompt]",
-        choices=["web", "mobile", "desktop", "api", "other"],
-    )
+    
+    # Enforce valid project type selection
+    while True:
+        project_type = Prompt.ask(
+            "[prompt]What type of project is this?[/prompt]",
+            choices=VALID_PROJECT_TYPES,
+            show_choices=True
+        )
+        if project_type in VALID_PROJECT_TYPES:
+            break
+        console.print("[error]Please select a valid project type from the list.[/error]")
+    
     project_description = Prompt.ask("[prompt]Please describe your project briefly[/prompt]")
     
     # Display collected information
