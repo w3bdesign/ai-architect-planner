@@ -7,7 +7,7 @@ name = "ai_architect_planner"
 version = "0.1.0"
 description = "AI-based architect and planner for enterprise applications"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.11"
 license = "MIT"
 dependencies = [
     "rich>=13.0.0",
