@@ -6,7 +6,6 @@ from ai_architect_planner.cli import (
     main,
     process_project_details,
     run_cli,
-    VALID_PROJECT_TYPES
 )
 
 def test_project_details_collection():
