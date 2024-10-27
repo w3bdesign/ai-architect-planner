@@ -36,6 +36,26 @@ def test_process_project_details():
         mock_save.assert_called_once_with(mock_dir, mock_content)
         mock_show.assert_called_once_with(str(mock_dir), str(mock_doc_path))
 
+def test_process_project_details_error():
+    """Test error handling in project details processing."""
+    test_details = ProjectDetails(
+        name="test-project",
+        type="web",
+        description="A test project"
+    )
+    
+    test_error = ValueError("Test error")
+    
+    with patch('ai_architect_planner.cli.cli.create_project_structure', side_effect=test_error), \
+         patch('ai_architect_planner.cli.cli.show_error') as mock_show:
+        
+        try:
+            process_project_details(test_details)
+        except ValueError as e:
+            assert str(e) == "Test error"
+        
+        mock_show.assert_called_once_with("Test error")
+
 def test_main_success():
     """Test successful execution of main function."""
     test_details = ProjectDetails(
