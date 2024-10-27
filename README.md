@@ -47,7 +47,7 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-3️⃣ Install dependencies:
+3️⃣ Install in development mode:
 ```bash
 pip install -e ".[dev]"
 ```
@@ -80,26 +80,35 @@ your-project/
 
 ```
 ai_architect_planner/
-├── __main__.py        # Entry point
-├── cli.py             # Main CLI
-├── config.py          # Configuration settings
-├── constants.py       # Shared constants
-├── type_definitions.py # Type definitions
-├── interaction.py     # User interface
-├── project.py         # Project operations
-└── llm.py            # AI service
+├── core/          # Core functionality
+│   ├── interaction.py  # User interaction
+│   └── project.py      # Project operations
+├── services/      # Service modules
+│   └── llm.py         # AI service (mock)
+├── utils/         # Utilities
+│   ├── config.py          # Configuration
+│   ├── constants.py       # Constants
+│   └── type_definitions.py # Type hints
+└── cli/           # CLI interface
+    └── cli.py          # Main CLI
 ```
 
 ### Module Overview
 
-- **__main__.py**: Application entry point
-- **cli.py**: Main application orchestration
-- **config.py**: Project-wide configuration settings
-- **constants.py**: Shared string constants and messages
-- **type_definitions.py**: TypeScript-like type definitions
+#### Core
 - **interaction.py**: User interaction handling
-- **project.py**: File and directory operations
-- **llm.py**: AI-powered analysis and recommendations
+- **project.py**: Project structure operations
+
+#### Services
+- **llm.py**: AI service for architecture analysis (currently mocked)
+
+#### Utils
+- **config.py**: Project-wide configuration
+- **constants.py**: Shared constants
+- **type_definitions.py**: TypeScript-like type hints
+
+#### CLI
+- **cli.py**: Main CLI interface
 
 ## 🧪 Testing
 
@@ -112,17 +121,17 @@ pytest
 pytest --cov=ai_architect_planner
 
 # Run specific test file
-pytest tests/test_cli.py -v
+pytest tests/cli/test_cli.py -v
 ```
 
 ### Test Structure
 
 ```
 tests/
-├── test_cli.py         # CLI tests
-├── test_interaction.py # User interaction tests
-├── test_llm.py        # AI service tests
-└── test_project.py    # Project operation tests
+├── cli/          # CLI tests
+├── core/         # Core module tests
+├── services/     # Service tests
+└── utils/        # Utility tests
 ```
 
 ## 📚 Generated Documentation
@@ -136,15 +145,24 @@ The tool generates a comprehensive `ARCHITECT.md` in your project containing:
 
 ## 🔄 Development Workflow
 
-1. Make changes to relevant modules
-2. Update tests as needed
-3. Run test suite with coverage
-4. Update documentation if necessary
-5. Submit pull request
+1. Create feature branch
+2. Make changes
+3. Run tests and linting:
+   ```bash
+   # Run tests with coverage
+   pytest --cov=ai_architect_planner
+   
+   # Run black for formatting
+   black .
+   
+   # Run isort for import sorting
+   isort .
+   ```
+4. Submit pull request
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please:
+Contributions welcome! Please:
 1. Fork the repository
 2. Create a feature branch
 3. Add tests for new functionality
