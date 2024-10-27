@@ -32,7 +32,7 @@
 
 1️⃣ Clone the repository:
 ```bash
-git clone https://github.com/yourusername/ai-architect-planner.git
+git clone https://github.com/w3bdesign/ai-architect-planner.git
 cd ai-architect-planner
 ```
 
