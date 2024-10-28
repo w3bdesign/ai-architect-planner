@@ -50,3 +50,9 @@ jobs:
           junit/test-results.xml
           coverage.xml
           htmlcov/
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        files: ./coverage.xml
+        fail_ci_if_error: true
