@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/w3bdesign/ai-architect-planner/graph/badge.svg?token=DOEIVG4KLQ)](https://codecov.io/gh/w3bdesign/ai-architect-planner)
+
 # 🏗️ AI Architect Planner
 
 > 🤖 Your AI-powered companion for architecting enterprise-ready applications
