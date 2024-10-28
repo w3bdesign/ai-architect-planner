@@ -114,17 +114,42 @@ ai_architect_planner/
 
 ## 🧪 Testing
 
-Run tests with coverage:
-```bash
-# Run all tests
-pytest
+The project uses pytest for testing and maintains code coverage through Codecov integration.
 
-# Run with coverage report
-pytest --cov=ai_architect_planner
+### Running Tests Locally
+
+```bash
+# Run all tests with coverage
+pytest --cov=ai_architect_planner --cov-report=term
 
 # Run specific test file
 pytest tests/cli/test_cli.py -v
 ```
+
+### Continuous Integration
+
+Our GitHub Actions workflow automatically runs on push and pull requests to the main branch, performing:
+
+1. **Environment Setup**
+   - Python 3.11 setup
+   - Installation of dependencies
+
+2. **Code Quality**
+   - Linting with Ruff
+   - Format checking with Ruff (non-blocking)
+
+3. **Testing**
+   - Runs pytest with multiple coverage reports:
+     - XML report for Codecov
+     - HTML report for local viewing
+     - Terminal output for immediate feedback
+   - Generates JUnit XML test results
+
+4. **Artifacts**
+   - Uploads test results and coverage reports as artifacts
+   - Pushes coverage data to Codecov for tracking
+
+View the latest coverage reports on [Codecov](https://codecov.io/gh/w3bdesign/ai-architect-planner).
 
 ### Test Structure
 
@@ -152,13 +177,11 @@ The tool generates a comprehensive `ARCHITECT.md` in your project containing:
 3. Run tests and linting:
    ```bash
    # Run tests with coverage
-   pytest --cov=ai_architect_planner
-   
-   # Run black for formatting
-   black .
-   
-   # Run isort for import sorting
-   isort .
+   pytest --cov=ai_architect_planner --cov-report=term
+
+   # Run Ruff for linting and formatting
+   ruff check
+   ruff format
    ```
 4. Submit pull request
 
