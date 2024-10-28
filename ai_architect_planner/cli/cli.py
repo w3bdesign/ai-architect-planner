@@ -1,7 +1,6 @@
 """Interactive console interface for AI Architect Planner."""
 
 from typing import Optional
-from pathlib import Path
 
 # Import from core modules
 from ai_architect_planner.core.interaction import (
