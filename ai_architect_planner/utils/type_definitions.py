@@ -1,6 +1,6 @@
 """Type definitions for AI Architect Planner."""
 
-from typing import Dict, List, TypedDict, Literal
+from typing import List, TypedDict, Literal
 
 ProjectType = Literal["web", "mobile", "desktop", "api", "other"]
 
