@@ -29,8 +29,11 @@
 ### Prerequisites
 - Python 3.11 or higher
 - Git
+- PowerShell 7+ (for automated setup)
 
 ### Installation
+
+#### Option 1: Manual Setup
 
 1️⃣ Clone the repository:
 ```bash
@@ -53,6 +56,19 @@ source venv/bin/activate
 ```bash
 pip install -e ".[dev]"
 ```
+
+#### Option 2: Automated Setup (Windows PowerShell)
+
+After cloning the repository, you can use our automated setup script:
+
+```powershell
+pwsh setup.ps1
+```
+
+This script will automatically:
+- Verify Python 3.11+ is installed
+- Create and activate a virtual environment
+- Install the package in development mode
 
 ## 💻 Usage
 
