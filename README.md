@@ -29,7 +29,7 @@
 ### Prerequisites
 - Python 3.11 or higher
 - Git
-- PowerShell 7+ (for automated setup)
+- PowerShell 7+
 
 ### Installation
 
